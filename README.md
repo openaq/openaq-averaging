@@ -29,7 +29,7 @@ This is demonstrated in the figure above, but is also evident when scanning a ha
 
 ## **B. How Data Accessed from the OpenAQ Platform Can Help Generate a More Up-To-Date and Synchronous Global Picture**
 
-Two major advantage of using data accessed from the OpenAQ platform is that one can get _much more up-to-date annual average values collected synchronously_ from 2656 cities in 70 countries.
+Two major advantages of using data accessed from the OpenAQ platform is that one can get a) much more up-to-date annual average values that are b) collected synchronously from 2656 cities in 70 countries.
 
 Since data are captured in near-real time and uniformly formatted on the OpenAQ Platform, creating annual averages at a given geospatial scale becomes much more automated. 
 
