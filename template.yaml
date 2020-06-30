@@ -9,7 +9,7 @@ Resources:
     Properties:
       Handler: index.handler
       Runtime: nodejs12.x
-      MemorySize: 128
+      MemorySize: 640
       Timeout: 300
       Environment:
         Variables:
@@ -17,3 +17,8 @@ Resources:
           PARQUET_TABLE: 
           S3_BUCKET:
           S3_AVERAGES_PREFIX:
+          PSQL_HOST:
+          PSQL_USER:
+          PSQL_PORT:
+          PSQL_PASSWORD:
+          PSQL_DATABASE:
