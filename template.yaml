@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  averaging
+
+Resources:
+  RunAveragingQueries:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs12.x
+      MemorySize: 640
+      Timeout: 300
+      Environment:
+        Variables:
+          DATABASE: 
+          PARQUET_TABLE: 
+          S3_BUCKET:
+          S3_AVERAGES_PREFIX:
+          PSQL_HOST:
+          PSQL_USER:
+          PSQL_PORT:
+          PSQL_PASSWORD:
+          PSQL_DATABASE:
