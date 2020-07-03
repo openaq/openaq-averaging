@@ -1,7 +1,32 @@
 # openaq-averaging
 A repo on determining longer-term averages at varying geospatial scales from data accessed from the OpenAQ Platform. 
 
-See "Issues" for latest discussion and some code snippets.
+The BETA version of the `averages` endpoint is available at [api.openaq.org/beta/averages](api.openaq.org/beta/averages). Check out the [API docs](docs.openaq.org/#api-Averages) to learn how to use it.
+
+NOTE: Because the endpoint is in beta, there may be bugs and it may change. It also has some limitations, notably: 
+- Lambdas are currently not running daily, the most recent data is from June 30, 2020
+- Only averages for PM 2.5 are available
+ 
+
+These issues and more will be addressed in the coming weeks. Follow this repo for updates and definitely **share your feedback as Issues**!
+
+
+## How it Works
+
+All of OpenAQ's data exists in S3, where it can be accessed and queried through Amazon Athena. Regularly scheduled lambda functions run queries to calculate averages for every spatial-temporal resolution combo. The data is then stored in the datase, where the API pulls it from.
+
+To see how the `averages` endpoint works, check out the [api repo](https://github.com/openaq/openaq-api), most relevant being the [router file](https://github.com/openaq/openaq-api/blob/develop/api/routes/averages.js) and  [controller file](https://github.com/openaq/openaq-api/blob/develop/api/controller/averages.js).
+
+### Data Cleaning
+
+We apply a simple set of data-cleaning criteria to the raw data before extracting averages. While these criteria are simplistic and may inadequately account for specific-source idiosyncrasies, they are what we conclude can logically be applied to disparately-maintained data sources in order to compute first-pass averages. Note: The application of these criteria may bias the averages reported by this tool, and as always, we can make no guarantees of accuracy or precision of the underlying raw data.
+
+We apply the following data-cleaning criteria to the raw data before creating averages: 
+- Only ingest values > 0
+  - We recognize that negative values, while physically unrealistic, can convey useful information. That said, for simplicity and the purposes of averaging geospatially and temporally across stations, originating sources, cities, and even countries, we remove all underlying negative values from averages reported from this tool. 
+  - We remove 0’s because, for some sources, 0’s appear to be used to report ‘no value reporting.’ We presume the bias removed by applying this data-cleaning criteria greater than the bias of removing values actually reported as precisely 0. The user should be aware of our presumption.
+- Remove value = 985
+  - This value is common used internationally to indicate that data is not being reported from a source for PM measurements. While many types of PM instruments’ documentation indicate that measurements > 985ug/m3 are not reliable, we have not removed values above this for this average.
 
 ***
 
