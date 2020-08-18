@@ -1,7 +1,7 @@
 # openaq-averaging
 A repo on determining longer-term averages at varying geospatial scales from data accessed from the OpenAQ Platform. 
 
-The BETA version of the `averages` endpoint is available at [api.openaq.org/beta/averages](api.openaq.org/beta/averages). Check out the [API docs](docs.openaq.org/#api-Averages) to learn how to use it.
+The BETA version of the `averages` endpoint is available at [api.openaq.org/beta/averages](https://api.openaq.org/beta/averages). Check out the [API docs](https://docs.openaq.org/#api-Averages) to learn how to use it.
 
 NOTE: Because the endpoint is in beta, there may be bugs and it may change. It also has some limitations, notably: 
 - Lambdas are currently not running daily, the most recent data is from June 30, 2020
